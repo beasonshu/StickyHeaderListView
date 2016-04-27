@@ -14,6 +14,8 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.util.Util;
 import com.sunfusheng.StickyHeaderListView.R;
 import com.sunfusheng.StickyHeaderListView.adapter.TravelingAdapter;
 import com.sunfusheng.StickyHeaderListView.model.ChannelEntity;
@@ -308,6 +310,9 @@ public class MainActivity extends AppCompatActivity implements SmoothListView.IS
         if (listViewAdHeaderView != null) {
             listViewAdHeaderView.stopADRotate();
         }
+        if(Util.isOnMainThread()) {
+            Glide.get(this).clearMemory();
+        }
     }
 
     @Override
@@ -339,4 +344,5 @@ public class MainActivity extends AppCompatActivity implements SmoothListView.IS
             }
         }, 2000);
     }
+
 }

@@ -1,10 +1,12 @@
 package com.sunfusheng.StickyHeaderListView.manager;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.util.Util;
 import com.sunfusheng.StickyHeaderListView.R;
 import com.sunfusheng.StickyHeaderListView.view.GlideCircleTransform;
 
@@ -33,12 +35,14 @@ public class ImageManager {
 
     // 加载网络图片
     public void loadUrlImage(Context context, String url, ImageView imageView) {
-        Glide.with(context)
-                .load(url)
-                .placeholder(R.color.font_black_6)
-                .error(R.color.font_black_6)
-                .crossFade()
-                .into(imageView);
+        if (Util.isOnMainThread()){
+            Glide.with(context)
+                    .load(url)
+                    .placeholder(R.color.font_black_6)
+                    .error(R.color.font_black_6)
+                    .crossFade()
+                    .into(imageView);
+        }
     }
 
     // 加载drawable图片
